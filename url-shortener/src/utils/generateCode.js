@@ -7,5 +7,5 @@ export function generateShortCode(length = 6) {
     }
   
     return code;
-  }
+}
   

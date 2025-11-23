@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ path: "../.env"});
 
 import urlRoutes from "./routes/urlRoutes.js";
 

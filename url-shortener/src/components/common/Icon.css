@@ -1,0 +1,31 @@
+.icon {
+    cursor: pointer;
+    background-color: white;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease-in;
+}
+
+.copyIcon {
+    font-size: 16px;
+    color: #505050;
+}
+
+.icon:hover {
+    background-color: #ececec;
+}
+
+.viewIcon,
+.deleteIcon {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: white;
+}
+
+.viewIcon {
+    color: #3f95d7;
+}
+
+.deleteIcon {
+    color: #e03e3e;
+}

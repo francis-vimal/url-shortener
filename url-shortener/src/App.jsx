@@ -1,27 +1,20 @@
-import { useEffect, useState } from 'react'
 import './App.css'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import DashboardPage from './components/Dashboard/DashboardPage';
+import ViewStats from "./components/ViewStats";
 
 function App() {
-  useEffect(() => {
-    async function shorten() {
-      const res = await fetch("http://localhost:3000/shorten", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          longUrl: "https://example.com/docs",
-          customCode: "docs"
-        }),
-      });
-    
-      const data = await res.json();
-      console.log(data);
-    }
-
-    shorten();
-  });
-  
   return (
     <>
+      <Toaster position="bottom-center" />
+
+      <Router>
+        <Switch>
+          <Route exact path="/" component={DashboardPage} />
+          <Route path="/code/:code" component={ViewStats} />
+        </Switch>
+      </Router>
     </>
   )
 }
