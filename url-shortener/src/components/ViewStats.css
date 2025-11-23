@@ -1,0 +1,19 @@
+.statsContainer {
+    justify-self: center;
+    margin: 30px 40px;
+}
+
+.backContainer {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 30px;
+    gap: 5px;
+    background-color: white;
+    transition: background-color 0.1s ease-in;
+}
+
+.backContainer:hover {
+    cursor: pointer;
+    background-color: #ececec;
+}

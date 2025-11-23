@@ -55,14 +55,13 @@ export async function getOneUrl(req, res) {
   const data = await getLink(shortCode);
 
   if (!data)
-    return res.status(404).sjon({ error: "URL is not found" });
+    return res.redirect("/");
 
   return res.json(data);
 }
 
 export async function deleteUrl(req, res) {
   const { code } = req.params;
-  console.log("code: ", code)
   try {
     const result = deleteLink(code);
 

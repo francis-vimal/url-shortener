@@ -10,13 +10,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 a {
   font-weight: 500;
   text-decoration: inherit;
-}
-
-body {
-  margin: 0;
 }
 
 h1 {

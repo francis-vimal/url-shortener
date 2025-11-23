@@ -60,9 +60,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 0 80px;
+    margin: 0 80px 30px;
     gap: 30px;
-    margin-bottom: 14px;
 }
 
 .aliasInput {
@@ -116,5 +115,11 @@
 
     to {
         width: 20vw;
+    }
+}
+
+@media screen and (max-width: 598px) {
+    .cardContainer {
+        margin: 0 50px 30px;
     }
 }

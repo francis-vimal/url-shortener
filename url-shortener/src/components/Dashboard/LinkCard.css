@@ -1,15 +1,20 @@
-.linkCard {
+.linkCard,
+.statCard {
     border: 1px solid #ddd;
-    border-radius: 8px;
     padding: 1rem 2rem 2rem 2rem;
+    border-radius: 8px;
     background: #fff;
-    width: 300px;
     overflow: hidden;
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
     display: flex;
     flex-direction: column;
     animation: fadeIn .3s ease-in-out forwards;
 }
+
+.linkCard {
+    width: 300px;
+}
+
 
 .linkContainer {
     display: flex;
@@ -75,8 +80,10 @@ a:hover {
 .cardBottom,
 .cardBottom>div {
     justify-content: space-between;
+    gap: 10px;
     display: inline-flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .cardBottom>div {
@@ -100,4 +107,21 @@ a:hover {
 .lastClicked span {
     font-size: 12px;
     color: #3f95d7
+}
+
+.statCard {
+    width: 80vw;
+
+    .shortLink {
+        font-size: 32px;
+    }
+
+    .copyIcon {
+        font-size: 20px;
+    }
+
+    .longLink {
+        font-size: 16px;
+        ;
+    }
 }

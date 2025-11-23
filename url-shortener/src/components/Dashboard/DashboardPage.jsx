@@ -3,8 +3,10 @@ import { useState, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import LinkCard from "./LinkCard";
 import Icon from "../common/Icon.jsx"
-export default function DashboardPage() {
+
+export default function DashboardPage({ searchText }) {
     const [links, setLinks] = useState([]);
+    const [filteredLinks, setFilteredLinks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [refresh, setRefresh] = useState(false);
     const [urlError, setUrlError] = useState("");
@@ -17,12 +19,20 @@ export default function DashboardPage() {
     function loadLinks() {
         fetch(`${backendBaseUrl}/api/links`)
             .then(res => res.json())
-            .then(data => setLinks(data));
+            .then(data => setLinks(data)).catch(err => console.error(err));
     }
 
     useEffect(() => {
         loadLinks();
     }, [refresh]);
+
+    useEffect(() => {
+        setFilteredLinks(
+            links.filter(link =>
+                link.long_url?.toLowerCase().includes(searchText.toLowerCase())
+            )
+        );
+    }, [searchText, links]);
 
     async function onShorten(e) {
         try {
@@ -57,10 +67,9 @@ export default function DashboardPage() {
                 toast.success("Link shortened successfully!");
                 setRefresh(prev => !prev);
             } else {
-                toast.error(data.error || "Something went wrong!");
+                toast.error("Something went wrong!");
             }
             setLoading(false);
-            setRefresh(prev => !prev);
         } catch (err) {
             console.error(err);
             setLoading(false);
@@ -106,8 +115,8 @@ export default function DashboardPage() {
                 </form>
             </div>
             <div className="cardContainer">
-                {links.length ?
-                    links.map((link) => (
+                {filteredLinks.length ?
+                    filteredLinks.map((link) => (
                         <LinkCard key={link.id} links={link} refresh={loadLinks} />
                     )) :
                     <p className="emptyLinkText">Shorten your first URL to see it here.</p>}

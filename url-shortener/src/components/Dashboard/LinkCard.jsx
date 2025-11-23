@@ -3,8 +3,7 @@ import { useHistory } from "react-router-dom";
 import toast from "react-hot-toast";
 import Icon from "../common/Icon";
 
-export default function LinkCard({ links, refresh }) {
-    // const baseUrl = window.location.origin;
+export default function LinkCard({ links, refresh, isStat }) {
     const history = useHistory();
     const backendBaseUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -36,17 +35,17 @@ export default function LinkCard({ links, refresh }) {
             const res = await fetch(`${backendBaseUrl}/api/links/${links.shortcode}`, {
                 method: "DELETE"
             });
-            console.log(res);
             if (res.ok) {
                 toast.success("Link deleted successfully!");
-                refresh();
+                !isStat && refresh();
+                history.push("/");
             } else {
                 const errorData = await res.json();
                 toast.error(errorData.error || "Something went wrong!");
             }
         } catch (err) {
             console.error(err);
-            alert("Something went wrong");
+            toast.error("Something went wrong!");
         }
     }
 
@@ -67,14 +66,16 @@ export default function LinkCard({ links, refresh }) {
     }
 
     return (
-        <div className="linkCard">
+        <div className={!isStat ? "linkCard" : "statCard"}>
             <div className="actionsContainer">
-                <Icon className="icon viewIcon" title="View Stat" iconName="visibility" event={handleView} />
+                {!isStat && <Icon className="icon viewIcon" title="View Stat" iconName="visibility" event={handleView} />}
                 <Icon className="icon deleteIcon" title="Delete Link" iconName="delete" event={handleDelete} />
             </div>
             <div className="linkContainer">
                 <div className="shortLinkContainer">
-                    <p><a className="shortLink" onClick={onShortClick} href={`${backendBaseUrl}/${links.shortcode}`} target="_blank">{backendBaseUrl}/{links.shortcode}</a></p>
+                    <p><a className="shortLink" onClick={onShortClick} href={`${backendBaseUrl}/${links.shortcode}`} target="_blank">
+                        {backendBaseUrl}/{links.shortcode}
+                    </a></p>
                     <Icon className="icon copyIcon" title="Copy" iconName="content_copy" event={handleCopy} />
                 </div>
                 <p><a className="longLink" href={`${links.long_url}`} target="_blank">{links.long_url}</a></p>
