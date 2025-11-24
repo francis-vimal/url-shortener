@@ -7,11 +7,7 @@ import urlRoutes from "./routes/urlRoutes.js";
 
 const app = express();
 
-app.use(cors({
-  origin: "https://url-shortener-frontend-ewoh.onrender.com",
-  methods: ["GET", "POST", "DELETE"],
-  credentials: true
-}));
+app.use(cors());
 app.use(express.json());
 app.use("/", urlRoutes);
 
