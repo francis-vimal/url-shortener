@@ -56,8 +56,8 @@ https://url-shortener-frontend-ewoh.onrender.com/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone <your-repo-url>
-cd <project-folder>
+git clone https://github.com/francis-vimal/url-shortener.git
+cd url-shortener
 ```
 
 ### 2️⃣ Install Dependencies
